@@ -1,0 +1,85 @@
+*{
+  font-family: 'Titillium Web', sans-serif;
+  background-color: rgb(251, 249, 249);
+}
+body{
+  padding: 10px 10px;
+}
+#header{
+  font-size: 7.5vmin;
+  letter-spacing: 10px;
+}
+#gal{
+  font-size: 5.5vmin;
+  font-family: 'Muli', sans-serif;;
+  color: rgb(247, 144, 30);
+  letter-spacing: -2px;
+}
+.dark{
+  background-color: rgb(120, 120, 120);
+}
+#con{
+  height: 200px;
+  width: 100%;
+  /*background-color: rgb(126, 255, 99);*/
+  /*border: 1px solid white;*/
+}
+#con1{
+  /*background-color: rgb(94, 94, 94);*/
+  height: 400px;
+  width: 50%;
+  float: left;
+  /*border: 1px solid white;*/
+
+}
+#con2{
+  /*background-color: rgb(94, 94, 94);*/
+  height: 400px;
+  width: 50%;
+  float: right;
+  /*border: 1px solid white;*/
+
+}
+#con3{
+  /*background-color: rgb(94, 94, 94);*/
+  height: 400px;
+  width: 33.3%;
+  float: left;
+  /*border: 1px solid white;*/
+
+}
+#con4{
+  /*background-color: rgb(94, 94, 94);*/
+  height: 400px;
+  width: 33.3%;
+  float: left;
+  /*border: 1px solid white;*/
+
+}
+#con5{
+  /*background-color: rgb(94, 94, 94);*/
+  height: 400px;
+  width: 33.3%;
+  float: left;
+  /*border: 1px solid white;*/
+
+}
+#con6{
+  /*background-color: rgb(94, 94, 94);*/
+  height: 400px;
+  width: 50%;
+  float: left;
+  /*border: 1px solid white;*/
+
+}
+#con7{
+  /*background-color: rgb(94, 94, 94);*/
+  height: 400px;
+  width: 50%;
+  float: left;
+  /*border: 1px solid white;*/
+
+}
+#barChart{
+  height: 200px;
+}

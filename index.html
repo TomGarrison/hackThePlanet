@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hack The Planet</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Muli|Titillium+Web:200" rel="stylesheet">
+    <script src="app.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <div class="fullCon">
+
+  <div id="con" class="container">
+      <div class="row text-center">
+        <h1 id="header"><span id="gal">galvanize </span> HACK THE PLANET</h1>
+        <button id="btn" type="button" name="button">Easy On The Eyes</button>
+      </div>
+  </div>
+
+    <div id="con1" class="container">
+        <div class="row">
+            <canvas id="barChart" width="500" height="280"></canvas>
+        </div>
+    </div>
+
+    <div id="con2" class="container">
+        <div class="row">
+          <canvas id="lineChart" width="500" height="280"></canvas>
+        </div>
+    </div>
+
+    <div id="con3" class="container">
+        <div class="row">
+            <canvas id="pieChart" width="2000" height="1500"></canvas>
+        </div>
+    </div>
+
+    <div id="con4" class="container">
+        <div class="row">
+            <canvas id="radarChart" width="2000" height="1600"></canvas>
+        </div>
+    </div>
+
+    <div id="con5" class="container">
+        <div class="row">
+                <canvas id="doughnutChart" width="2000" height="1500"></canvas>
+        </div>
+    </div>
+
+    <div id="con6" class="container">
+        <div class="row">
+                <canvas id="polarChart" width="2000" height="1500"></canvas>
+        </div>
+    </div>
+
+    <div id="con7" class="container">
+        <div class="row">
+                <canvas id="bubbleChart" width="2000" height="1500"></canvas>
+        </div>
+    </div>
+
+
+    <script>
+    // CONTAINER 1 BAR
+        var ctx = document.getElementById("barChart");
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+// CONTAINER 1 BAR END
+
+// CONTAINER 2 PIE START
+var line = document.getElementById("lineChart");
+var myLineChart = new Chart(line, {
+    type: 'line',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+// CONTAINER 2 LINE END
+
+// CONTAINER 3 PIE START
+var pie = document.getElementById("pieChart");
+var myPieChart = new Chart(pie,{
+    type: 'pie',
+    data: {
+    labels: [
+        "Red",
+        "Blue",
+        "Yellow"
+    ],
+    datasets: [
+        {
+            data: [300, 50, 100],
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+},
+});
+
+// CONTAINER 3 PIE END
+
+// CONTAINER 4 POLAR AREA CHART START
+var radar = document.getElementById("radarChart");
+var myRadarChart = new Chart(radar, {
+    type: 'radar',
+    data: {
+    labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
+    datasets: [
+        {
+            label: "My First dataset",
+            backgroundColor: "rgba(179,181,198,0.2)",
+            borderColor: "rgba(179,181,198,1)",
+            pointBackgroundColor: "rgba(179,181,198,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(179,181,198,1)",
+            data: [65, 59, 90, 81, 56, 55, 40]
+        },
+        {
+            label: "My Second dataset",
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            pointBackgroundColor: "rgba(255,99,132,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(255,99,132,1)",
+            data: [28, 48, 40, 19, 96, 27, 100]
+        }
+    ]
+},
+});
+// CONTAINER 4 POLAR AREA CHART END
+
+// CONTAINER 5 DOUGHNUT CHART START
+var doughnut = document.getElementById("doughnutChart");
+var mydoughnutChart = new Chart(doughnut,{
+    type: 'doughnut',
+    data: {
+    labels: [
+        "Red",
+        "Blue",
+        "Yellow"
+    ],
+    datasets: [
+        {
+            data: [300, 50, 100],
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+},
+});
+
+// CONTAINER 5 END
+
+// CONTAINER 6 START
+var polar = document.getElementById("polarChart");
+new Chart(polar, {
+    data: {
+    datasets: [{
+        data: [
+            11,
+            16,
+            7,
+            3,
+            14
+        ],
+        backgroundColor: [
+            "#FF6384",
+            "#4BC0C0",
+            "#FFCE56",
+            "#E7E9ED",
+            "#36A2EB"
+        ],
+        label: 'My dataset' // for legend
+    }],
+    labels: [
+        "Red",
+        "Green",
+        "Yellow",
+        "Grey",
+        "Blue"
+    ]
+},
+    type: 'polarArea',
+});
+// CONTAINER 6 END
+
+// CONTAINER 7 START
+var bubble = document.getElementById("bubbleChart");
+var myBubbleChart = new Chart(bubble,{
+    type: 'bubble',
+    options: {
+        elements: {
+            points: {
+                borderWidth: 10,
+                borderColor: 'rgb(0, 0, 0)'
+            }
+        }
+    },
+    data: {
+    datasets: [
+        {
+            label: 'First Dataset',
+            data: [
+              {
+                x: 0,
+                y: 60,
+                r: 0
+              },
+              {
+                x: 60,
+                y: 0,
+                r: 0
+              },
+                {
+                    x: 20,
+                    y: 30,
+                    r: 15
+                },
+                {
+                  x: 40,
+                  y: 30,
+                  r: 25
+                },
+                {
+                    x: 40,
+                    y: 10,
+                    r: 10
+                }
+            ],
+            backgroundColor:"#FF6384",
+            hoverBackgroundColor: "#FF6384",
+        }]
+}
+});
+// CONTAINER 7 END
+    </script>
+  </div>
+</body>
+
+</html>
