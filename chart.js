@@ -1,243 +1,304 @@
-// CONTAINER 1 BAR
-    var ctx = document.getElementById("barChart");
-    var myBarChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(0, 77, 77, 0.5)',
-                    'rgba(165, 220, 251, 0.5)',
-                    'rgba(12, 143, 156, 0.5)',
-                    'rgba(9, 88, 210, 0.5)',
-                    'rgba(238, 202, 8, 0.5)',
-                    'rgba(255, 159, 10, 0.5)'
-                ],
-                borderColor: [
-                    'rgb(0, 77, 77)',
-                    'rgb(165, 220, 251)',
-                    'rgb(12, 143, 156)',
-                    'rgb(9, 88, 210)',
-                    'rgb(238, 202, 8)',
-                    'rgb(244, 159, 10)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-// CONTAINER 1 BAR END
+  $(document).ready(function() {
 
-// CONTAINER 2 LINE START
-var line = document.getElementById("lineChart");
-var myLineChart = new Chart(line, {
-type: 'line',
-data: {
-    labels: ["Nitrous Oxide","Methane", "Carbon Dioxide", "Fluorinated Gases"],
-    datasets: [{
-        label: '100-year global warming potential',
-        data: [281, 1, 32, 1430 ],
-        backgroundColor: [
-            'rgba(255, 159, 10, 0.5)'
-        ],
-        borderColor: [
-            'rgba(244, 159, 10, 1)'
-        ],
-        borderWidth: 1
-    }]
-},
-options: {
-    scales: {
-        yAxes: [{
-            ticks: {
-                beginAtZero: true
-            }
-        }]
-    }
-}
-});
-// CONTAINER 2 LINE END
+  $("#header").slideUp().animate({ opacity: 1 }, { queue: false, duration: 'fast' }).slideDown().animate({ opacity: 1 }, { queue: false, duration: 'fast' })
 
-// CONTAINER 3 PIE START
-var pie = document.getElementById("pieChart");
-var myPieChart = new Chart(pie,{
-type: 'pie',
-data: {
-labels: [
-    "Red",
-    "Blue",
-    "Yellow"
-],
-datasets: [
-    {
-        data: [300, 50, 100],
-        backgroundColor: [
-          'rgb(165, 220, 251)',
-          'rgb(12, 143, 156)',
-          'rgb(9, 88, 210)',
-        ],
-        hoverBackgroundColor: [
-          'rgb(144, 212, 250)',
-          'rgb(6, 128, 140)',
-          'rgb(6, 78, 190)',
-        ]
-    }]
-},
-});
+  $('#btn').click(function() {
+    $('html').toggleClass('dark')
+    $('#header').toggleClass('dark')
+    $('#con').toggleClass('dark')
+    $('body').toggleClass('dark')
+    $('#header').toggleClass('light')
+    $(".container").slideUp().animate({ opacity: 1 }, { queue: false, duration: 'fast' }).slideDown().animate({ opacity: 1 }, { queue: false, duration: 'fast' })
+  })
 
-// CONTAINER 3 PIE END
 
-// CONTAINER 4 POLAR AREA CHART START
-var radar = document.getElementById("radarChart");
-var myRadarChart = new Chart(radar, {
-type: 'radar',
-data: {
-labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-datasets: [
-    {
-        label: "My First dataset",
-        backgroundColor: "rgba(255, 159, 10, 0.5)",
-        borderColor: "rgba(255, 159, 10, 1)",
-        pointBackgroundColor: "rgba(255, 159, 10, 1)",
-        pointBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgba(255, 159, 10, 1)",
-        data: [65, 59, 90, 81, 56, 55, 40]
-    },
-    {
-        label: "My Second dataset",
-        backgroundColor: "rgba(238, 202, 8, 0.5)",
-        borderColor: "rgba(238, 202, 8, 1)",
-        pointBackgroundColor: "rgba(238, 202, 8, 1)",
-        pointBorderColor: "#fff",
-        pointHoverBackgroundColor: "#fff",
-        pointHoverBorderColor: "rgba(238, 202, 8, 1)",
-        data: [28, 48, 40, 19, 96, 27, 100]
-    }
-]
-},
-});
-// CONTAINER 4 POLAR AREA CHART END
+  var ajaxCall = (city2) => {
+    return $.ajax({
+       method: 'GET',
+       url: `http://api.openweathermap.org/data/2.5/weather?q=${city2}&APPID=bd545da109eb3ed82496113b3eaa590d`
+     })
+   };
 
-// CONTAINER 5 DOUGHNUT CHART START
-var doughnut = document.getElementById("doughnutChart");
-var mydoughnutChart = new Chart(doughnut,{
-type: 'doughnut',
-data: {
-labels: [
-    "Red",
-    "Blue",
-    "Yellow"
-],
-datasets: [
-    {
-        data: [300, 50, 100],
-        backgroundColor: [
-          'rgb(165, 220, 251)',
-          'rgb(12, 143, 156)',
-          'rgb(9, 88, 210)',
-        ],
-        hoverBackgroundColor: [
-          'rgb(131, 207, 250)',
-          'rgb(4, 122, 134)',
-          'rgb(6, 72, 175)',
-        ]
-    }]
-},
-});
+  var add_city_data_to_global = (data, temperature, humidity, wind) => {
+    let temp = (data.main.temp - 273.15).toFixed(2)
+    let humid = data.main.humidity
+    let speed = data.wind.speed
+    wind.push(speed)
+    temperature.push(temp)
+    humidity.push(humid)
+  }
 
-// CONTAINER 5 END
+   var getWeather = () => {
+     let cities = ['newyorkcity', 'riodejaneiro', 'shanghai', 'instanbul', 'cairo', 'sydney', 'mcmurdostation']
+     return Promise.all(
+       cities.map((city) => ajaxCall(city))
+     ).then( (array_of_city_data) => {
+       var temperature = []
+       var humidity = []
+       var wind = []
+       array_of_city_data.forEach( (city_data) => add_city_data_to_global(city_data, temperature, humidity, wind) )
+       return {
+         temperature,
+         humidity,
+         wind
+       }
+     })
 
-// CONTAINER 6 START
-var polar = document.getElementById("polarChart");
-new Chart(polar, {
-data: {
-datasets: [{
-    data: [
-        11,
-        16,
-        7,
-        3,
-        14
-    ],
-    backgroundColor: [
-      'rgb(0, 77, 77)',
-      'rgb(165, 220, 251)',
-      'rgb(12, 143, 156)',
-      'rgb(9, 88, 210)',
-      'rgb(238, 202, 8)',
-      'rgb(244, 159, 10)'
-    ],
-    label: 'My dataset' // for legend
-}],
-labels: [
-    "Red",
-    "Green",
-    "Yellow",
-    "Grey",
-    "Blue"
-]
-},
-type: 'polarArea',
-});
-// CONTAINER 6 END
+     /** /
+     for (var i = 0; i < cities.length; i++) {
+       let city = cities[i]
+       console.log(ajaxCall(city));
+       return ajaxCall(city);
+      //  return ajaxCall(city)
+     }
+     /**/
+   }
 
-// CONTAINER 7 START
-var bubble = document.getElementById("bubbleChart");
-var myBubbleChart = new Chart(bubble,{
-type: 'bubble',
-options: {
-    elements: {
-        points: {
-            borderWidth: 10,
-            borderColor: 'rgb(0, 0, 0)'
-        }
-    }
-},
-data: {
-datasets: [
-    {
-        label: 'First Dataset',
-        data: [
-          {
-            x: 0,
-            y: 60,
-            r: 0
+  function fillCharts(data) {
+    let temperature = data.temperature
+    let humidity = data.humidity
+    let wind = data.wind
+  // CONTAINER 1 BAR
+      var ctx = document.getElementById("barChart");
+      var myBarChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ["New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"],
+              datasets: [{
+                  label: 'Surface Temp',
+                  data: temperature,
+                  backgroundColor: [
+                      'rgba(0, 77, 77, 0.5)',
+                      'rgba(165, 220, 251, 0.5)',
+                      'rgba(12, 143, 156, 0.5)',
+                      'rgba(9, 88, 210, 0.5)',
+                      'rgba(238, 202, 8, 0.5)',
+                      'rgba(255, 159, 10, 0.5)',
+                      'rgba(0, 136, 172, 0.5)'
+                  ],
+                  borderColor: [
+                      'rgb(0, 77, 77)',
+                      'rgb(165, 220, 251)',
+                      'rgb(12, 143, 156)',
+                      'rgb(9, 88, 210)',
+                      'rgb(238, 202, 8)',
+                      'rgb(244, 159, 10)',
+                      'rgb(0, 136, 172)'
+                  ],
+                  borderWidth: 1
+              }]
           },
-          {
-            x: 60,
-            y: 0,
-            r: 0
-          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero: false
+                      }
+                  }]
+              }
+          }
+      });
+  // CONTAINER 1 BAR END
+
+  // CONTAINER 2 LINE START
+  var line = document.getElementById("lineChart");
+  var myLineChart = new Chart(line, {
+  type: 'line',
+  data: {
+      labels: ["Nitrous Oxide","Methane", "Carbon Dioxide", "Fluorinated Gases"],
+      datasets: [{
+          label: '100-year global warming potential',
+          data: [281, 1, 32, 1430 ],
+          backgroundColor: [
+              'rgba(255, 159, 10, 0.5)'
+          ],
+          borderColor: [
+              'rgba(244, 159, 10, 1)'
+          ],
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      }
+  }
+  });
+  // CONTAINER 2 LINE END
+
+  // CONTAINER 3 PIE START
+  var pie = document.getElementById("pieChart");
+  var myPieChart = new Chart(pie,{
+  type: 'pie',
+  data: {
+  labels: [
+      "Red",
+      "Blue",
+      "Yellow"
+  ],
+  datasets: [
+      {
+          data: [300, 50, 100],
+          backgroundColor: [
+            'rgb(165, 220, 251)',
+            'rgb(12, 143, 156)',
+            'rgb(9, 88, 210)',
+          ],
+          hoverBackgroundColor: [
+            'rgb(144, 212, 250)',
+            'rgb(6, 128, 140)',
+            'rgb(6, 78, 190)',
+          ]
+      }]
+  },
+  });
+
+  // CONTAINER 3 PIE END
+
+  // CONTAINER 4 POLAR AREA CHART START
+  var radar = document.getElementById("radarChart");
+  var myRadarChart = new Chart(radar, {
+  type: 'radar',
+  data: {
+  labels: ["New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"],
+  datasets: [
+      {
+          label: "Humidity",
+          backgroundColor: "rgba(255, 159, 10, 0.5)",
+          borderColor: "rgba(255, 159, 10, 1)",
+          pointBackgroundColor: "rgba(255, 159, 10, 1)",
+          pointBorderColor: "#fff",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(255, 159, 10, 1)",
+          data: humidity
+      },
+  ]
+  },
+  });
+  // CONTAINER 4 POLAR AREA CHART END
+
+  // CONTAINER 5 DOUGHNUT CHART START
+  var doughnut = document.getElementById("doughnutChart");
+  var mydoughnutChart = new Chart(doughnut,{
+  type: 'doughnut',
+  data: {
+  labels: [
+      "Red",
+      "Blue",
+      "Yellow"
+  ],
+  datasets: [
+      {
+          data: [300, 50, 100],
+          backgroundColor: [
+            'rgb(165, 220, 251)',
+            'rgb(12, 143, 156)',
+            'rgb(9, 88, 210)',
+          ],
+          hoverBackgroundColor: [
+            'rgb(131, 207, 250)',
+            'rgb(4, 122, 134)',
+            'rgb(6, 72, 175)',
+          ]
+      }]
+  },
+  });
+
+  // CONTAINER 5 END
+
+  // CONTAINER 6 START
+  var polar = document.getElementById("polarChart");
+  new Chart(polar, {
+  data: {
+  datasets: [{
+      data: [
+          11,
+          16,
+          7,
+          3,
+          14
+      ],
+      backgroundColor: [
+        'rgb(0, 77, 77)',
+        'rgb(165, 220, 251)',
+        'rgb(12, 143, 156)',
+        'rgb(9, 88, 210)',
+        'rgb(238, 202, 8)',
+        'rgb(244, 159, 10)'
+      ],
+      label: 'My dataset' // for legend
+  }],
+  labels: [
+      "Red",
+      "Green",
+      "Yellow",
+      "Grey",
+      "Blue"
+  ]
+  },
+  type: 'polarArea',
+  });
+  // CONTAINER 6 END
+
+  // CONTAINER 7 START
+  var bubble = document.getElementById("bubbleChart");
+  var myBubbleChart = new Chart(bubble,{
+  type: 'bubble',
+  options: {
+      elements: {
+          points: {
+              borderWidth: 10,
+              borderColor: 'rgb(0, 0, 0)'
+          }
+      }
+  },
+  data: {
+  datasets: [
+      {
+          label: 'First Dataset',
+          data: [
             {
-                x: 20,
-                y: 30,
-                r: 15
+              x: 0,
+              y: 60,
+              r: 0
             },
             {
-              x: 40,
-              y: 30,
-              r: 25
+              x: 60,
+              y: 0,
+              r: 0
             },
-            {
+              {
+                  x: 20,
+                  y: 30,
+                  r: 15
+              },
+              {
                 x: 40,
-                y: 10,
-                r: 10
-            }
-        ],
-        backgroundColor:'rgb(244, 159, 10)',
-        hoverBackgroundColor:'rgb(244, 159, 10)',
-    }]
-}
-});
-// CONTAINER 7 END
+                y: 30,
+                r: 25
+              },
+              {
+                  x: 40,
+                  y: 10,
+                  r: 10
+              }
+          ],
+          backgroundColor:'rgb(244, 159, 10)',
+          hoverBackgroundColor:'rgb(244, 159, 10)',
+      }]
+  }
+  });
+  // CONTAINER 7 END
+
+  console.log('humidity', humidity);
+  console.log(typeof humidity[0]);
+  console.log('temperature', temperature);
+  console.log('wind', wind);
+  }
+
+  getWeather().then(fillCharts);
+})

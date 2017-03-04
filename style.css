@@ -66,9 +66,9 @@ body{
   float: left;
 
 }
-#barChart{
+/*#barChart{
   height: 200px;
-}
+}*/
 
 #btn{
   text-align: center;
@@ -80,6 +80,7 @@ body{
   border: 3px solid rgb(247, 144, 30);
   background-color: rgba(255, 255, 255, 0);
   border-radius: 2px;
+  transition: all 1s ease;
 }
 #btn:hover{
   background-color: rgb(247, 144, 30);
