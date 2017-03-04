@@ -19,13 +19,16 @@
      })
    };
 
-  var add_city_data_to_global = (data, temperature, humidity, wind) => {
+  var add_city_data_to_global = (data, temperature, humidity, wind, visibility) => {
+    console.log(data);
     let temp = (data.main.temp - 273.15).toFixed(2)
     let humid = data.main.humidity
     let speed = data.wind.speed
+    let vis = data.visibility
     wind.push(speed)
     temperature.push(temp)
     humidity.push(humid)
+    visibility.push(vis)
   }
 
    var getWeather = () => {
@@ -36,28 +39,23 @@
        var temperature = []
        var humidity = []
        var wind = []
-       array_of_city_data.forEach( (city_data) => add_city_data_to_global(city_data, temperature, humidity, wind) )
+       var visibility = []
+       array_of_city_data.forEach( (city_data) => add_city_data_to_global(city_data, temperature, humidity, wind, visibility) )
        return {
          temperature,
          humidity,
-         wind
+         wind,
+         visibility
        }
      })
-
-     /** /
-     for (var i = 0; i < cities.length; i++) {
-       let city = cities[i]
-       console.log(ajaxCall(city));
-       return ajaxCall(city);
-      //  return ajaxCall(city)
-     }
-     /**/
    }
 
   function fillCharts(data) {
     let temperature = data.temperature
     let humidity = data.humidity
     let wind = data.wind
+    let visibility = data.visibility
+    console.log("VIS",visibility);
   // CONTAINER 1 BAR
       var ctx = document.getElementById("barChart");
       var myBarChart = new Chart(ctx, {
@@ -136,22 +134,28 @@
   type: 'pie',
   data: {
   labels: [
-      "Red",
-      "Blue",
-      "Yellow"
+      "New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"
   ],
   datasets: [
       {
-          data: [300, 50, 100],
+          data: humidity,
           backgroundColor: [
+            'rgb(0, 77, 77)',
             'rgb(165, 220, 251)',
             'rgb(12, 143, 156)',
             'rgb(9, 88, 210)',
+            'rgb(238, 202, 8)',
+            'rgb(244, 159, 10)',
+            'rgb(0, 136, 172)'
           ],
           hoverBackgroundColor: [
-            'rgb(144, 212, 250)',
-            'rgb(6, 128, 140)',
-            'rgb(6, 78, 190)',
+            'rgb(0, 77, 77)',
+            'rgb(165, 220, 251)',
+            'rgb(12, 143, 156)',
+            'rgb(9, 88, 210)',
+            'rgb(238, 202, 8)',
+            'rgb(244, 159, 10)',
+            'rgb(0, 136, 172)'
           ]
       }]
   },
@@ -167,14 +171,14 @@
   labels: ["New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"],
   datasets: [
       {
-          label: "Humidity",
+          label: "Wind Speend",
           backgroundColor: "rgba(255, 159, 10, 0.5)",
           borderColor: "rgba(255, 159, 10, 1)",
           pointBackgroundColor: "rgba(255, 159, 10, 1)",
           pointBorderColor: "#fff",
           pointHoverBackgroundColor: "#fff",
           pointHoverBorderColor: "rgba(255, 159, 10, 1)",
-          data: humidity
+          data: wind
       },
   ]
   },
@@ -187,17 +191,19 @@
   type: 'doughnut',
   data: {
   labels: [
-      "Red",
-      "Blue",
-      "Yellow"
+"New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"
   ],
   datasets: [
       {
-          data: [300, 50, 100],
+          data: visibility,
           backgroundColor: [
+            'rgb(0, 77, 77)',
             'rgb(165, 220, 251)',
             'rgb(12, 143, 156)',
             'rgb(9, 88, 210)',
+            'rgb(238, 202, 8)',
+            'rgb(244, 159, 10)',
+            'rgb(0, 136, 172)'
           ],
           hoverBackgroundColor: [
             'rgb(131, 207, 250)',
@@ -215,13 +221,7 @@
   new Chart(polar, {
   data: {
   datasets: [{
-      data: [
-          11,
-          16,
-          7,
-          3,
-          14
-      ],
+      data: humidity,
       backgroundColor: [
         'rgb(0, 77, 77)',
         'rgb(165, 220, 251)',
@@ -233,11 +233,7 @@
       label: 'My dataset' // for legend
   }],
   labels: [
-      "Red",
-      "Green",
-      "Yellow",
-      "Grey",
-      "Blue"
+    "New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"
   ]
   },
   type: 'polarArea',

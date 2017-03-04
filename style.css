@@ -66,9 +66,10 @@ body{
   float: left;
 
 }
-/*#barChart{
-  height: 200px;
-}*/
+#con3, #con4, #con5{
+margin-top: 60px;
+}
+
 
 #btn{
   text-align: center;
