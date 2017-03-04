@@ -15,7 +15,7 @@ body{
   letter-spacing: -2px;
 }
 .dark{
-  background-color: rgb(189, 189, 189);
+  background-color: rgba(0, 0, 0, 0.42);
 }
 .light{
   color: rgb(255, 255, 255);
@@ -92,7 +92,14 @@ margin-top: 60px;
 }
 button:focus {outline:0;}
 
-
+a {
+  color: black;
+  text-decoration: none;
+}
+a:link{
+  text-decoration: none;
+  color: black;
+}
 
 /*about us*/
 .bio {
