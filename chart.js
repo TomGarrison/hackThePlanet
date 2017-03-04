@@ -60,7 +60,7 @@
       var myBarChart = new Chart(ctx, {
           type: 'bar',
           data: {
-              labels: ["New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"],
+              labels: ["New York City, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "McMurdo Station, AQ"],
               datasets: [{
                   label: 'Surface Temp',
                   data: temperature,
@@ -102,10 +102,12 @@
   var myLineChart = new Chart(line, {
   type: 'line',
   data: {
-      labels: ["Nitrous Oxide","Methane", "Carbon Dioxide", "Fluorinated Gases"],
+      labels: [
+        "Nitrous Oxide", "Methane", "Chlorofluorocarbon", "Carbon Dioxide", "Hydrofluorocarbon", "Carbon Tetrafluoride"
+      ],
       datasets: [{
           label: '100-year global warming potential',
-          data: [281, 1, 32, 1430 ],
+          data: [281, 1, 5350, 32, 1430, 7350 ],
           backgroundColor: [
               'rgba(255, 159, 10, 0.5)'
           ],
@@ -133,7 +135,7 @@
   type: 'pie',
   data: {
   labels: [
-      "New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"
+      "New York City, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "McMurdo Station, AQ"
   ],
   datasets: [
       {
@@ -167,10 +169,10 @@
   var myRadarChart = new Chart(radar, {
   type: 'radar',
   data: {
-  labels: ["New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"],
+  labels: ["New York City, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "McMurdo Station, AQ"],
   datasets: [
       {
-          label: "Wind Speend",
+          label: "Wind Speed",
           backgroundColor: "rgba(255, 159, 10, 0.5)",
           borderColor: "rgba(255, 159, 10, 1)",
           pointBackgroundColor: "rgba(255, 159, 10, 1)",
@@ -190,7 +192,7 @@
   type: 'doughnut',
   data: {
   labels: [
-"New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"
+"New York City, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "McMurdo Station, AQ"
   ],
   datasets: [
       {
@@ -232,12 +234,12 @@
         'rgba(9, 88, 210, 0.8)',
         'rgba(238, 202, 8, 0.8)',
         'rgba(255, 159, 10, 0.8)',
-        'rgba(0, 136, 172, 0.8)'
+        'rgba(0, 136, 172, 0.5)'
       ],
       label: 'My dataset' // for legend
   }],
   labels: [
-    "New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"
+    "New York City, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "McMurdo Station, AQ"
   ]
   },
   type: 'polarArea',
@@ -249,10 +251,10 @@
   var myBarChart = new Chart(ctx, {
       type: 'bar',
       data: {
-          labels: ["New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"],
+          labels: ["New York City, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "McMurdo Station, AQ"],
           datasets: [{
-              label: 'Surface Temp',
-              data: temperature,
+              label: 'Ozone Levels (Dobson Units)',
+              data: [306.7, 242.3, 294.2, 284.9, 295.8, 262.9, 296.8],
               backgroundColor: [
                   'rgba(0, 77, 77, 0.5)',
                   'rgba(165, 220, 251, 0.5)',

@@ -10,6 +10,9 @@ body{
 #header{
   font-size: 9vmin;
   letter-spacing: 10px;
+    /*font-family: 'Raleway', sans-serif;*/
+  font-family: 'Changa One', sans-serif;
+  color: rgb(69, 69, 69);
 }
 #gal{
   font-size: 6vmin;
@@ -18,7 +21,7 @@ body{
   letter-spacing: -2px;
 }
 .dark{
-  background-color: rgba(0, 0, 0, 0.42);
+  background-color: rgba(201, 198, 198, 0.32);
 }
 .light{
   color: rgb(255, 255, 255);
