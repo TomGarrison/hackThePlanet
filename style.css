@@ -15,7 +15,7 @@ body{
   letter-spacing: -2px;
 }
 .dark{
-  background-color: rgb(181, 177, 177);
+  background-color: rgb(189, 189, 189);
 }
 .light{
   color: rgb(255, 255, 255);
@@ -66,10 +66,12 @@ body{
   float: left;
 
 }
-#con3, #con4, #con5{
+#con3, #con4, #con5, #con6, #con7{
 margin-top: 60px;
 }
-
+#con1, #con2{
+  margin-top: 20px;
+}
 
 #btn{
   text-align: center;
@@ -89,3 +91,38 @@ margin-top: 60px;
   font-weight: bold;
 }
 button:focus {outline:0;}
+
+
+
+/*about us*/
+.bio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  /*border: 1px solid black;*/
+  height: 500px;
+}
+
+.us {
+  height: 300px;
+  border: 3px solid rgb(247, 144, 30);
+  border-radius: 100%;
+}
+
+.cohort {
+  font-family: 'Muli', sans-serif;
+  color: rgb(247, 144, 30);
+  font-size: 4vmin;
+}
+
+.linked {
+  height: 50px;
+}
+
+.btn {
+  margin: 20px;
+  color: black;
+  border: solid 2px rgb(247, 144, 30);
+  background-color: white;
+}

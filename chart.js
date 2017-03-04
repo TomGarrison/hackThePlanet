@@ -138,15 +138,15 @@
   ],
   datasets: [
       {
-          data: humidity,
+          data: [8.4, 6.3, 24.2, 9.1, 14.8, 4.3, .004],
           backgroundColor: [
-            'rgb(0, 77, 77)',
-            'rgb(165, 220, 251)',
-            'rgb(12, 143, 156)',
-            'rgb(9, 88, 210)',
-            'rgb(238, 202, 8)',
-            'rgb(244, 159, 10)',
-            'rgb(0, 136, 172)'
+            'rgba(0, 77, 77, 0.8)',
+            'rgba(165, 220, 251, 0.8)',
+            'rgba(12, 143, 156, 0.8)',
+            'rgba(9, 88, 210, 0.8)',
+            'rgba(238, 202, 8, 0.8)',
+            'rgba(255, 159, 10, 0.8)',
+            'rgba(0, 136, 172, 0.8)'
           ],
           hoverBackgroundColor: [
             'rgb(0, 77, 77)',
@@ -197,18 +197,22 @@
       {
           data: visibility,
           backgroundColor: [
-            'rgb(0, 77, 77)',
-            'rgb(165, 220, 251)',
-            'rgb(12, 143, 156)',
-            'rgb(9, 88, 210)',
-            'rgb(238, 202, 8)',
-            'rgb(244, 159, 10)',
-            'rgb(0, 136, 172)'
+            'rgba(0, 77, 77, 0.8)',
+            'rgba(165, 220, 251, 0.8)',
+            'rgba(12, 143, 156, 0.8)',
+            'rgba(9, 88, 210, 0.8)',
+            'rgba(238, 202, 8, 0.8)',
+            'rgba(255, 159, 10, 0.8)',
+            'rgba(0, 136, 172, 0.8)'
           ],
           hoverBackgroundColor: [
-            'rgb(131, 207, 250)',
-            'rgb(4, 122, 134)',
-            'rgb(6, 72, 175)',
+            'rgba(0, 77, 77, 1)',
+            'rgba(165, 220, 251, 1)',
+            'rgba(12, 143, 156, 1)',
+            'rgba(9, 88, 210, 1)',
+            'rgba(238, 202, 8, 1)',
+            'rgba(255, 159, 10, 1)',
+            'rgba(0, 136, 172, 1)'
           ]
       }]
   },
@@ -223,12 +227,13 @@
   datasets: [{
       data: humidity,
       backgroundColor: [
-        'rgb(0, 77, 77)',
-        'rgb(165, 220, 251)',
-        'rgb(12, 143, 156)',
-        'rgb(9, 88, 210)',
-        'rgb(238, 202, 8)',
-        'rgb(244, 159, 10)'
+        'rgba(0, 77, 77, 0.8)',
+        'rgba(165, 220, 251, 0.8)',
+        'rgba(12, 143, 156, 0.8)',
+        'rgba(9, 88, 210, 0.8)',
+        'rgba(238, 202, 8, 0.8)',
+        'rgba(255, 159, 10, 0.8)',
+        'rgba(0, 136, 172, 0.8)'
       ],
       label: 'My dataset' // for legend
   }],
@@ -241,52 +246,44 @@
   // CONTAINER 6 END
 
   // CONTAINER 7 START
-  var bubble = document.getElementById("bubbleChart");
-  var myBubbleChart = new Chart(bubble,{
-  type: 'bubble',
-  options: {
-      elements: {
-          points: {
-              borderWidth: 10,
-              borderColor: 'rgb(0, 0, 0)'
+  var ctx = document.getElementById("barChart2");
+  var myBarChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ["New York, USA", "Rio de Janeiro, BR", "Shanghai, CN", "Cairo, EG", "Instanbul, TR", "Sydney, AU", "Mcmurdo Station, AQ"],
+          datasets: [{
+              label: 'Surface Temp',
+              data: temperature,
+              backgroundColor: [
+                  'rgba(0, 77, 77, 0.5)',
+                  'rgba(165, 220, 251, 0.5)',
+                  'rgba(12, 143, 156, 0.5)',
+                  'rgba(9, 88, 210, 0.5)',
+                  'rgba(238, 202, 8, 0.5)',
+                  'rgba(255, 159, 10, 0.5)',
+                  'rgba(0, 136, 172, 0.5)'
+              ],
+              borderColor: [
+                  'rgb(0, 77, 77)',
+                  'rgb(165, 220, 251)',
+                  'rgb(12, 143, 156)',
+                  'rgb(9, 88, 210)',
+                  'rgb(238, 202, 8)',
+                  'rgb(244, 159, 10)',
+                  'rgb(0, 136, 172)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: false
+                  }
+              }]
           }
       }
-  },
-  data: {
-  datasets: [
-      {
-          label: 'First Dataset',
-          data: [
-            {
-              x: 0,
-              y: 60,
-              r: 0
-            },
-            {
-              x: 60,
-              y: 0,
-              r: 0
-            },
-              {
-                  x: 20,
-                  y: 30,
-                  r: 15
-              },
-              {
-                x: 40,
-                y: 30,
-                r: 25
-              },
-              {
-                  x: 40,
-                  y: 10,
-                  r: 10
-              }
-          ],
-          backgroundColor:'rgb(244, 159, 10)',
-          hoverBackgroundColor:'rgb(244, 159, 10)',
-      }]
-  }
   });
   // CONTAINER 7 END
 
