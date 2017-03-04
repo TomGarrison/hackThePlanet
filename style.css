@@ -4,12 +4,15 @@
 body{
   padding: 10px 10px;
 }
+.container{
+  margin: 5px 5px;
+}
 #header{
-  font-size: 7.5vmin;
+  font-size: 9vmin;
   letter-spacing: 10px;
 }
 #gal{
-  font-size: 5.5vmin;
+  font-size: 6vmin;
   font-family: 'Muli', sans-serif;;
   color: rgb(247, 144, 30);
   letter-spacing: -2px;
@@ -74,6 +77,7 @@ margin-top: 60px;
 }
 
 #btn{
+  margin-top: 20px;
   text-align: center;
   height: 40px;
   width: 24  0px;
