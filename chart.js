@@ -14,7 +14,7 @@
   var ajaxCall = (city2) => {
     return $.ajax({
        method: 'GET',
-       url: `http://api.openweathermap.org/data/2.5/weather?q=${city2}&APPID=bd545da109eb3ed82496113b3eaa590d`
+       url: `http://api.openweathermap.org/data/2.5/weather?id=${city2}&APPID=bd545da109eb3ed82496113b3eaa590d`
      })
    };
 
@@ -31,7 +31,7 @@
   }
 
    var getWeather = () => {
-     let cities = ['newyorkcity', 'riodejaneiro', 'shanghai', 'instanbul', 'cairo', 'sydney', 'mcmurdostation']
+     let cities = ['5114810', '3451190', '1796236', '745044', '360630', '2147714', '6696480']
      return Promise.all(
        cities.map((city) => ajaxCall(city))
      ).then( (array_of_city_data) => {

@@ -1,3 +1,8 @@
+@media screen and (min-width: 480px) {
+    #btn {
+        margin-top: 50px;
+    }
+}
 *{
   font-family: 'Titillium Web', sans-serif;
 }
@@ -6,6 +11,9 @@ body{
 }
 .container{
   margin: 5px 5px;
+}
+footer{
+  margin-bottom: 100px;
 }
 #header{
   font-size: 9vmin;
@@ -21,7 +29,7 @@ body{
   letter-spacing: -2px;
 }
 .dark{
-  background-color: rgba(201, 198, 198, 0.32);
+  background-color: rgba(10, 10, 10, 0.4);
 }
 .light{
   color: rgb(255, 255, 255);
@@ -72,6 +80,7 @@ body{
   float: left;
 
 }
+
 #con3, #con4, #con5, #con6, #con7{
 margin-top: 60px;
 }
@@ -80,7 +89,7 @@ margin-top: 60px;
 }
 
 #btn{
-  margin-top: 20px;
+  margin-top: 230px;
   text-align: center;
   height: 40px;
   width: 24  0px;
